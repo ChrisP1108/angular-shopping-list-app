@@ -1,0 +1,22 @@
+span {
+  margin-right: 1rem;
+}
+
+h3 {
+  font-size: 24px;
+  text-align: center;
+  margin-top: 50%;
+}
+
+p {
+  color: red;
+  text-align: center;
+}
+
+
+
+/*
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+*/

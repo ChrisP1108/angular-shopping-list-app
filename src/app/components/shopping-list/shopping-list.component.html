@@ -1,0 +1,26 @@
+<div class="product-add-container">
+  <h2>Items</h2>
+  <div>
+    <input type="text" name="text" id="text" (keyup)="typingProduct($event)" value="{{ text }}">
+    <button (click)="addProduct()">Add</button>
+  </div>
+</div>
+
+<h3 *ngIf="loading || loadError">{{ loading ? 'Loading...' : 'Error Loading List'}}</h3>
+
+<h3 *ngIf="list.length === 0 && !loadError && !serverError">No Product Items</h3>
+
+<div *ngIf="!loading && !loadError">
+  <app-shopping-item *ngFor="let item of list" [item]="item" (deleteItem)="deleteProduct(item)" (updateItem)="updateProduct($event)">
+  </app-shopping-item>
+</div>
+
+<p *ngIf="serverError">A Server Error Occured.  Please Check Your Connection And Try Again.</p>
+
+
+
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+-->

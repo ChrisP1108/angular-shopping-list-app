@@ -1,0 +1,8 @@
+<div class="item-container">
+  <p *ngIf="!edit" (click)="editProduct(item.id)">{{ item.product }}</p>
+  <div *ngIf="edit">
+    <input type="text" name="item" id="item" (keyup)="updateTyping($event)" value="{{ item.product }}">
+    <button [ngStyle]="{'background': empty ? 'orange' : noChange ? 'red' : 'green'}"(click)="updateProduct()">{{ empty ? 'Revert' : noChange ? 'Cancel' : 'Update' }}</button>
+  </div>
+  <h1 (click)="deleteProduct()">X</h1>
+</div>
