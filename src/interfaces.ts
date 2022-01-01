@@ -1,4 +1,6 @@
 export interface Product {
-  id: number,
+  _id?: string,
+  _date?: string
   product: string,
+  _productUpdated?: boolean
 }

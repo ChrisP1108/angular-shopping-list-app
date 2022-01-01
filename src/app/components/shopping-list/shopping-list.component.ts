@@ -24,6 +24,7 @@ export class ShoppingListComponent {
       .get(listUrl)
       .subscribe({
         next: res => {
+          console.log(res);
           this.list = res; 
           this.loading = false;
         },
@@ -47,8 +48,9 @@ export class ShoppingListComponent {
     this.httpService
       .delete(listUrl, item)
       .subscribe({
-        next: () => {
-          this.list = this.list.filter(i => i.id !== item.id);
+        next: res => {
+          console.log(res);
+          this.list = this.list.filter(i => i._id !== item._id);
           this.serverError = false;
         },
         error: err => {
@@ -74,22 +76,15 @@ export class ShoppingListComponent {
       alert('You cannot have more than 8 items on the list');
       return
     }
-    let idGen: number = 1;
-    for (let i: number = 1; i <= 8; i++) {
-      if(!this.list.some(item => item.id === i)) {
-        idGen = i;
-        break;
-      }
-    }
     const output: Product = {
-      id: idGen,
       product: this.text
     }
     this.httpService
       .post(listUrl, output)
       .subscribe({
-        next: () => {
-          this.list = [...this.list, output];
+        next: (res: any) => {
+          console.log(res)
+          this.list = [...this.list, res.product];
           this.text = '';
           this.serverError = false;
         },
@@ -106,8 +101,9 @@ export class ShoppingListComponent {
     this.httpService
       .put(listUrl, item)
       .subscribe({
-        next: () => {
-          this.list = this.list.map(i => i.id === item.id ? item : i);
+        next: (res: any) => {
+          console.log(res);
+          this.list = this.list.map(i => i._id === item._id ? res.product : i);
           this.serverError = false;
         },
         error: err => {

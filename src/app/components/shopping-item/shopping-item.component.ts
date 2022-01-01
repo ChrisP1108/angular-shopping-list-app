@@ -18,7 +18,7 @@ export class ShoppingItemComponent implements OnInit {
 
   constructor(private uiService:UiService) {
     this.uiService.editID().subscribe(value => {
-      if (this.item.id === value && !this.edit) {
+      if (this.item._id === value && !this.edit) {
         this.edit = true;
       } else {
         this.edit = false;
@@ -40,7 +40,7 @@ export class ShoppingItemComponent implements OnInit {
   }
 
   updateTyping(e: any) {
-    this.updatedText = e.target.value;
+    this.updatedText = e.target.value || '';
     if (!this.updatedText) {
       this.empty = true;
     } else {
@@ -64,10 +64,10 @@ export class ShoppingItemComponent implements OnInit {
     }
     if(this.noChange) {
       this.edit = false;
-      return
+      return;
     }
     const updatedTask: Product = {
-      id: this.item.id,
+      _id: this.item._id,
       product: this.updatedText
     }
     this.updateItem.emit(updatedTask);

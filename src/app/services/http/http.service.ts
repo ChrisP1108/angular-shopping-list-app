@@ -42,14 +42,14 @@ export class HttpService {
   }
 
   put(url: string, data: any): Observable<object> {
-    const putUrl = `${url}/${data.id}`;
+    const putUrl = `${url}/${data._id}`;
     return this.http.put<object>(putUrl, data, httpOptions)
       .pipe(catchError(this.handleError))
     ;
   }
 
   delete(url: string, data: any): Observable<object> {
-    const delUrl = `${url}/${data.id}`;
+    const delUrl = `${url}/${data._id}`;
     return this.http.delete<object>(delUrl)
       .pipe(catchError(this.handleError))
     ;
